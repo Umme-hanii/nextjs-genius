@@ -10,7 +10,7 @@ const HomePage = () => {
             Next Genius: Your AI language companion. Powered by OpenAI, it
             enhances your conversations, content creation, and more!
           </p>
-          <Link href="/chat" className="btn btn-secondary">
+          <Link href="/sign-in" className="btn btn-secondary">
             Get Started
           </Link>
         </div>
