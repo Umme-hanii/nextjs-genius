@@ -3,9 +3,9 @@ import ThemeToggle from "./ThemeToggle";
 
 const SidebarHeader = () => {
   return (
-    <header className="flex items-center text-primary py-4 mb-4 gap-4 px-1">
+    <header className="flex items-center text-secondary py-4 mb-4 gap-4 px-1">
       <RiOpenaiLine className="w-12 h-12" />
-      <h1 className="text-xl font-extrabold">NEXTGENIUS</h1>
+      <h2 className="text-xl font-extrabold mr-auto">NEXTGENIUS</h2>
       <ThemeToggle />
     </header>
   );
