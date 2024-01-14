@@ -1,14 +1,41 @@
 "use client";
 
+import { useMutation } from "@tanstack/react-query";
 import TourInfo from "./TourInfo";
+import {
+  createNewTour,
+  generateTourResponse,
+  getExistingTour,
+} from "@/utils/actions";
+import toast from "react-hot-toast";
 
 const NewTour = () => {
+  const {
+    mutate,
+    isPending,
+    data: tour,
+  } = useMutation({
+    mutationFn: async (destination) => {
+      const newTour = await generateTourResponse(destination);
+      if (newTour) {
+        return newTour;
+      } else {
+        toast.error("Please provide valid input");
+        return null;
+      }
+    },
+  });
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const destination = Object.fromEntries(formData.entries());
-    console.log(destination);
+    mutate(destination);
   };
+
+  if (isPending) {
+    return <span className="loading loading-lg"></span>;
+  }
 
   return (
     <>
@@ -32,8 +59,9 @@ const NewTour = () => {
           <button className="btn btn-secondary join-item">Generate Tour</button>
         </div>
       </form>
-
-      <TourInfo />
+      <div className="mt-16">
+        {tour ? <TourInfo key={tour.city} {...tour} /> : null}
+      </div>
     </>
   );
 };
