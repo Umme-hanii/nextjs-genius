@@ -9,7 +9,7 @@ const Chat = () => {
   const [text, setText] = useState("");
   const [messages, setMessages] = useState([]);
 
-  const { mutate } = useMutation({
+  const { mutate, isError, isPending } = useMutation({
     mutationFn: (query) => generateChatResponse([...messages, query]),
     onSuccess: (data) => {
       if (!data) {
@@ -17,6 +17,7 @@ const Chat = () => {
         return;
       }
       setMessages([...messages, data]);
+      console.log(messages);
     },
   });
 
@@ -30,7 +31,20 @@ const Chat = () => {
   return (
     <main className="min-h-[calc(100vh-6rem)] grid grid-rows-[1fr,auto]">
       <section>
-        <h2 className="text-5xl">messages</h2>
+        {messages.map(({ role, content }, index) => {
+          const bgColor = role == "user" ? "bg-base-300" : "bg-base-100";
+          const avatar = role == "user" ? "🦹‍♀️" : "🤖";
+          return (
+            <div
+              className={`${bgColor} m-4 p-4 flex text-xl md:max-w-4xl leading-loose rounded-t-lg`}
+              key={index}
+            >
+              <span className="mr-4">{avatar}</span>
+              <p className="max-w-3xl           ">{content}</p>
+            </div>
+          );
+        })}
+        {isPending && <span className="loading"></span>}
       </section>
       <form onSubmit={(e) => handleSubmit(e)} className="max-w-4xl pt-12">
         <div className="join w-full">
@@ -45,6 +59,7 @@ const Chat = () => {
           <button
             type="submit"
             className="btn join-item bg-secondary text-white"
+            disabled={isPending}
           >
             Ask Question
           </button>
