@@ -4,12 +4,12 @@ import { useState } from "react";
 import { BsMoonFill, BsSunFill } from "react-icons/bs";
 
 const themes = {
-  light: "light",
+  light: "fantasy",
   sunset: "sunset",
 };
 
 const ThemeToggle = () => {
-  const [theme, setTheme] = useState(themes.light);
+  const [theme, setTheme] = useState(themes.sunset);
 
   const toggleTheme = () => {
     const newTheme = theme === themes.light ? themes.sunset : themes.light;

@@ -7,9 +7,9 @@ import Providers from "./providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Next Genius App",
+  title: "Tour Genius App",
   description:
-    "Next Genius: Your AI language companion. Powered by OpenAI, it enhances your conversations, content creation, and more!",
+    "Tour Genius: Your AI language companion. Powered by OpenAI, it enhances your travel experience by giving information about your dream destination!",
 };
 
 export default function RootLayout({ children }) {

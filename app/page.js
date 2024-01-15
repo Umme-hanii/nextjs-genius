@@ -9,8 +9,9 @@ const HomePage = () => {
             <h1 className="text-5xl font-bold text-primary">Next Genius</h1>
 
             <p className="py-6 text-lg leading-loose text-base-content">
-              Next Genius: Your AI language companion. Powered by OpenAI, it
-              enhances your conversations, content creation, and more!
+              Tour Genius: Your AI language companion. Powered by OpenAI, it
+              enhances your travel experience by giving information about your
+              dream destination!
             </p>
 
             <Link href="/sign-in" className="btn btn-secondary">
