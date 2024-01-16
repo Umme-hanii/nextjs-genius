@@ -14,4 +14,5 @@ const page = () => {
     </HydrationBoundary>
   );
 };
+
 export default page;
