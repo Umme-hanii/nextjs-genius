@@ -1,6 +1,9 @@
+import { currentUser } from "@clerk/nextjs";
 import Link from "next/link";
 
-const HomePage = () => {
+const HomePage = async () => {
+  const user = await currentUser();
+
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content max-w-5xl mockup-window border bg-neutral text-secondary">
@@ -13,10 +16,16 @@ const HomePage = () => {
               enhances your travel experience by giving information about your
               dream destination!
             </p>
-
-            <Link href="/sign-in" className="btn btn-secondary">
-              Get Started
-            </Link>
+            {user && (
+              <Link href="/tours/new-tour" className="btn btn-secondary">
+                Get Started
+              </Link>
+            )}
+            {!user && (
+              <Link href="/sign-in" className="btn btn-secondary">
+                Sign In
+              </Link>
+            )}
           </div>
         </div>
       </div>
